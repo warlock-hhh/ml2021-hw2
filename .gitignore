@@ -1,0 +1,27 @@
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv*/
+
+# TIMIT dataset (large, reproducible input data)
+**/timit_11/
+*.npy
+
+# Training outputs
+*.ckpt
+*.pth
+*.csv
+
+# CUDA/PyTorch installation artifacts
+*.whl
+torch.part*
+torch-download*
+torch-parts.json
+gpu-install*.log
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db
