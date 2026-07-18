@@ -170,7 +170,7 @@ device = get_device()
 print(f'DEVICE: {device}')
 
 # training parameters
-num_epoch = 5                 # number of training epoch
+num_epoch = 10                 # number of training epoch
 learning_rate = 0.0001       # learning rate
 
 # the path where checkpoint saved
@@ -179,7 +179,11 @@ model_path = './model.ckpt'
 # create model, define a loss function, and optimizer
 model = Classifier().to(device)
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+optimizer = torch.optim.Adam(
+    model.parameters(),
+    lr=learning_rate,
+    weight_decay=1e-4,
+)
 
 # start training
 
