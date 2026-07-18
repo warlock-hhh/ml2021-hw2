@@ -126,7 +126,7 @@ class Classifier(nn.Module):
         self.layer3 = nn.Linear(512, 128)
         self.out = nn.Linear(128, 39)
 
-        self.act_fn = nn.Sigmoid()
+        self.act_fn = nn.ReLU()
 
     def forward(self, x):
         x = self.layer1(x)
@@ -170,7 +170,7 @@ device = get_device()
 print(f'DEVICE: {device}')
 
 # training parameters
-num_epoch = 20                # number of training epoch
+num_epoch = 5                 # number of training epoch
 learning_rate = 0.0001       # learning rate
 
 # the path where checkpoint saved
