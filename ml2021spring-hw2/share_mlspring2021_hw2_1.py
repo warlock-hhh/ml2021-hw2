@@ -174,7 +174,7 @@ device = get_device()
 print(f'DEVICE: {device}')
 
 # training parameters
-num_epoch = 10                 # number of training epoch
+num_epoch = 15                 # number of training epoch
 learning_rate = 0.0001       # learning rate
 
 # the path where checkpoint saved
