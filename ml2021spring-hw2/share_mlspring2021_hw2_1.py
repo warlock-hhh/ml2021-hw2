@@ -180,7 +180,7 @@ device = get_device()
 print(f'DEVICE: {device}')
 
 # training parameters
-num_epoch = 15                 # number of training epoch
+num_epoch = 25                 # number of training epoch
 learning_rate = 0.0001       # learning rate
 
 # the path where checkpoint saved
@@ -193,6 +193,12 @@ optimizer = torch.optim.Adam(
     model.parameters(),
     lr=learning_rate,
     weight_decay=1e-4,
+)
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+    optimizer,
+    mode='min',
+    factor=0.5,
+    patience=2,
 )
 
 # start training
@@ -233,8 +239,12 @@ for epoch in range(num_epoch):
                 val_acc += (val_pred.cpu() == labels.cpu()).sum().item() # get the index of the class with the highest probability
                 val_loss += batch_loss.item()
 
-            print('[{:03d}/{:03d}] Train Acc: {:3.6f} Loss: {:3.6f} | Val Acc: {:3.6f} loss: {:3.6f}'.format(
-                epoch + 1, num_epoch, train_acc/len(train_set), train_loss/len(train_loader), val_acc/len(val_set), val_loss/len(val_loader)
+            average_val_loss = val_loss / len(val_loader)
+            scheduler.step(average_val_loss)
+            current_lr = optimizer.param_groups[0]['lr']
+
+            print('[{:03d}/{:03d}] Train Acc: {:3.6f} Loss: {:3.6f} | Val Acc: {:3.6f} loss: {:3.6f} | LR: {:.8f}'.format(
+                epoch + 1, num_epoch, train_acc/len(train_set), train_loss/len(train_loader), val_acc/len(val_set), average_val_loss, current_lr
             ))
 
             # if the model improves, save a checkpoint at this epoch
