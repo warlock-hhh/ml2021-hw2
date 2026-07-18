@@ -121,13 +121,13 @@ import torch.nn as nn
 class Classifier(nn.Module):
     def __init__(self):
         super(Classifier, self).__init__()
-        self.layer1 = nn.Linear(429, 1024)
-        self.bn1 = nn.BatchNorm1d(1024)
-        self.layer2 = nn.Linear(1024, 512)
-        self.bn2 = nn.BatchNorm1d(512)
-        self.layer3 = nn.Linear(512, 128)
-        self.bn3 = nn.BatchNorm1d(128)
-        self.out = nn.Linear(128, 39)
+        self.layer1 = nn.Linear(429, 2048)
+        self.bn1 = nn.BatchNorm1d(2048)
+        self.layer2 = nn.Linear(2048, 1024)
+        self.bn2 = nn.BatchNorm1d(1024)
+        self.layer3 = nn.Linear(1024, 512)
+        self.bn3 = nn.BatchNorm1d(512)
+        self.out = nn.Linear(512, 39)
 
         self.act_fn = nn.ReLU()
         self.dropout = nn.Dropout(p=0.2)
