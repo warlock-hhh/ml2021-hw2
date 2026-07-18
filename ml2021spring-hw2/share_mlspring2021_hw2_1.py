@@ -130,7 +130,7 @@ class Classifier(nn.Module):
         self.out = nn.Linear(512, 39)
 
         self.act_fn = nn.ReLU()
-        self.dropout = nn.Dropout(p=0.2)
+        self.dropout = nn.Dropout(p=0.3)
 
     def forward(self, x):
         x = self.layer1(x)
