@@ -25,3 +25,6 @@ gpu-install*.log
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Private course material
+*.pdf
