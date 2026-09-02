@@ -28,3 +28,12 @@ Thumbs.db
 
 # Private course material
 *.pdf
+# Secrets and local credentials
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+kaggle.json
+credentials*.json
+secrets*/
